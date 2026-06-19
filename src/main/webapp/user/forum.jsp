@@ -8,6 +8,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>戏曲爱好者论坛 - 中华京剧文化学习平台</title>
     <style>
+        :root {
+            --red: #C41E3A;
+            --red-dark: #8B1A2B;
+            --gold: #C5963A;
+            --gold-light: #D4A94E;
+            --gold-pale: #E8D5A3;
+            --gold-deep: #8B6914;
+            --bg-warm: #FFFDF7;
+            --bg-cream: #FBF7EF;
+            --bg-parchment: #F5F0E5;
+            --ink: #1C1410;
+            --ink-soft: #3D322B;
+            --ink-light: #6B5D53;
+            --shadow-sm: 0 1px 3px rgba(28,20,16,0.08);
+            --shadow-md: 0 4px 12px rgba(28,20,16,0.1);
+            --shadow-lg: 0 8px 24px rgba(28,20,16,0.16);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,10 +33,11 @@
         }
 
         body {
-            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f5f0e8 0%, #f0ebe0 100%);
+            font-family: 'Noto Serif SC', 'STSong', 'Songti SC', serif;
+            background: var(--bg-warm);
             padding: 30px;
             min-height: 100vh;
+            color: var(--ink);
         }
 
         .container {
@@ -29,12 +48,13 @@
         /* 页面头部 */
         .forum-header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 32px;
         }
 
         .forum-header h1 {
-            font-size: 36px;
-            color: #b71c1c;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--red);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -42,58 +62,66 @@
         }
 
         .forum-header p {
-            color: #666;
-            margin-top: 10px;
+            color: var(--ink-light);
+            margin-top: 8px;
         }
 
         .header-decoration {
             width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #b71c1c, #e8b88a, #b71c1c);
-            margin: 15px auto 0;
-            border-radius: 3px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin: 16px auto 0;
         }
 
         /* 发布帖子区域 */
         .publish-card {
-            background: white;
-            border-radius: 24px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-md);
         }
 
         .publish-title {
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 20px;
+            font-size: 1.25rem;
             font-weight: 600;
-            color: #333;
+            color: var(--ink);
             margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--gold-pale);
         }
 
         .publish-title span {
-            font-size: 28px;
+            font-size: 24px;
         }
 
         .publish-form input,
         .publish-form textarea {
             width: 100%;
-            border: 1.5px solid #e5e7eb;
-            border-radius: 14px;
-            padding: 14px 16px;
+            border: 1px solid var(--gold-pale);
+            border-radius: 6px;
+            padding: 12px 16px;
             font-size: 14px;
             transition: all 0.3s;
-            background: #f9fafb;
+            background: var(--bg-warm);
+            color: var(--ink);
+            font-family: inherit;
+        }
+
+        .publish-form input::placeholder,
+        .publish-form textarea::placeholder {
+            color: var(--ink-light);
         }
 
         .publish-form input:focus,
         .publish-form textarea:focus {
             outline: none;
-            border-color: #b71c1c;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(183, 28, 28, 0.1);
+            border-color: var(--red);
+            box-shadow: 0 0 0 2px rgba(197,150,58,0.25);
         }
 
         .publish-form textarea {
@@ -102,32 +130,33 @@
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
         .form-group label {
             display: block;
             font-size: 14px;
             font-weight: 500;
-            color: #555;
+            color: var(--ink-soft);
             margin-bottom: 8px;
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, #b71c1c, #c62828);
-            color: white;
+            background: var(--red);
+            color: var(--bg-warm);
             border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
+            padding: 10px 32px;
+            border-radius: 9999px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            font-family: inherit;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(183, 28, 28, 0.4);
+            background: var(--red-dark);
+            box-shadow: var(--shadow-md);
         }
 
         /* 提示消息 */
@@ -136,66 +165,71 @@
             border: 1px solid #a5d6a7;
             color: #2e7d32;
             padding: 12px 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 14px;
         }
 
         .alert-error {
             background: #ffebee;
             border-color: #ffcdd2;
-            color: #c62828;
+            color: var(--red);
         }
 
         /* 帖子列表 */
         .posts-section {
-            background: white;
-            border-radius: 24px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--shadow-md);
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--gold-pale);
         }
 
         .section-header h3 {
-            font-size: 20px;
-            color: #333;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--ink);
             display: flex;
             align-items: center;
             gap: 8px;
+            padding-left: 12px;
+            border-left: 4px solid var(--gold);
         }
 
         .post-count {
-            background: #f0f0f0;
-            padding: 4px 12px;
-            border-radius: 20px;
+            background: var(--bg-parchment);
+            border: 1px solid var(--gold-pale);
+            padding: 4px 14px;
+            border-radius: 9999px;
             font-size: 13px;
-            color: #666;
+            color: var(--ink-light);
         }
 
         /* 帖子卡片 */
         .post-card {
-            background: #f9f7f3;
-            border-radius: 20px;
-            padding: 22px;
-            margin-bottom: 18px;
+            background: var(--bg-parchment);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
             transition: all 0.3s;
-            border: 1px solid #f0e6d8;
+            border: 1px solid var(--gold-pale);
         }
 
         .post-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            border-color: #e8b88a;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .post-header {
@@ -206,17 +240,17 @@
         }
 
         .post-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
         }
 
         .post-meta {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 16px;
             font-size: 12px;
-            color: #999;
+            color: var(--ink-light);
             margin-bottom: 12px;
         }
 
@@ -227,9 +261,9 @@
         }
 
         .post-content {
-            color: #555;
+            color: var(--ink-soft);
             line-height: 1.7;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             font-size: 14px;
         }
 
@@ -238,7 +272,7 @@
             align-items: center;
             gap: 20px;
             padding-top: 12px;
-            border-top: 1px solid #e5e5e5;
+            border-top: 1px solid var(--gold-pale);
         }
 
         .action-btn {
@@ -246,22 +280,23 @@
             align-items: center;
             gap: 6px;
             background: none;
-            border: none;
+            border: 1px solid var(--gold-pale);
             cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 30px;
+            padding: 6px 14px;
+            border-radius: 9999px;
             font-size: 13px;
-            color: #888;
+            color: var(--ink-light);
             transition: all 0.3s;
         }
 
         .action-btn:hover {
-            background: #fff0f0;
-            color: #c62828;
+            background: var(--bg-warm);
+            border-color: var(--gold);
+            color: var(--red);
         }
 
         .action-btn .heart {
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .praise-count {
@@ -271,16 +306,16 @@
         /* 空状态 */
         .empty-state {
             text-align: center;
-            padding: 60px;
+            padding: 48px;
         }
 
         .empty-state .emoji {
             font-size: 64px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
         .empty-state p {
-            color: #999;
+            color: var(--ink-light);
         }
 
         /* 响应式 */
@@ -310,13 +345,14 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
+            background: var(--ink);
+            color: var(--bg-warm);
+            padding: 10px 24px;
+            border-radius: 9999px;
             font-size: 14px;
             z-index: 1000;
             animation: fadeOut 2s ease forwards;
+            border: 1px solid var(--gold-pale);
         }
 
         @keyframes fadeOut {

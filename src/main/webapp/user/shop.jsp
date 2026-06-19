@@ -7,6 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>积分商城 - 中华京剧文化学习平台</title>
     <style>
+        :root {
+            --red: #C41E3A;
+            --red-dark: #8B1A2B;
+            --gold: #C5963A;
+            --gold-light: #D4A94E;
+            --gold-pale: #E8D5A3;
+            --gold-deep: #8B6914;
+            --bg-warm: #FFFDF7;
+            --bg-cream: #FBF7EF;
+            --bg-parchment: #F5F0E5;
+            --ink: #1C1410;
+            --ink-soft: #3D322B;
+            --ink-light: #6B5D53;
+            --shadow-sm: 0 1px 3px rgba(28,20,16,0.08);
+            --shadow-md: 0 4px 12px rgba(28,20,16,0.1);
+            --shadow-lg: 0 8px 24px rgba(28,20,16,0.16);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,10 +32,11 @@
         }
 
         body {
-            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f5f0e8 0%, #f0ebe0 100%);
+            font-family: 'Noto Serif SC', 'STSong', 'Songti SC', serif;
+            background: var(--bg-warm);
             padding: 30px;
             min-height: 100vh;
+            color: var(--ink);
         }
 
         .container {
@@ -28,12 +47,13 @@
         /* 页面头部 */
         .shop-header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 32px;
         }
 
         .shop-header h1 {
-            font-size: 36px;
-            color: #b71c1c;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--red);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -41,37 +61,48 @@
         }
 
         .shop-header p {
-            color: #666;
-            margin-top: 10px;
+            color: var(--ink-light);
+            margin-top: 8px;
         }
 
         .header-decoration {
             width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #b71c1c, #e8b88a, #b71c1c);
-            margin: 15px auto 0;
-            border-radius: 3px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin: 16px auto 0;
         }
 
         /* 积分卡片 */
         .score-card {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            border-radius: 24px;
-            padding: 25px 35px;
-            margin-bottom: 35px;
+            background: linear-gradient(135deg, var(--ink), #2C2218);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
+            padding: 24px 32px;
+            margin-bottom: 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 20px;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: var(--bg-warm);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .score-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
         }
 
         .score-info {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 16px;
         }
 
         .score-icon {
@@ -80,21 +111,24 @@
 
         .score-text h3 {
             font-size: 14px;
-            opacity: 0.8;
+            opacity: 0.7;
             font-weight: normal;
+            color: var(--gold-pale);
         }
 
         .score-text .score-value {
             font-size: 36px;
-            font-weight: bold;
-            color: #ffd700;
+            font-weight: 700;
+            color: var(--gold-light);
         }
 
         .score-tip {
-            background: rgba(255, 215, 0, 0.15);
+            background: rgba(197,150,58,0.15);
+            border: 1px solid rgba(197,150,58,0.3);
             padding: 10px 20px;
-            border-radius: 30px;
+            border-radius: 9999px;
             font-size: 13px;
+            color: var(--gold-pale);
         }
 
         /* 提示消息 */
@@ -103,8 +137,8 @@
             border: 1px solid #a5d6a7;
             color: #2e7d32;
             padding: 14px 20px;
-            border-radius: 16px;
-            margin-bottom: 25px;
+            border-radius: 8px;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -119,52 +153,44 @@
         .alert-error {
             background: #ffebee;
             border-color: #ffcdd2;
-            color: #c62828;
+            color: var(--red);
         }
 
         @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
+            from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
         @keyframes fadeOut {
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
+            to { opacity: 0; visibility: hidden; }
         }
 
         /* 商品网格 */
         .goods-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 24px;
         }
 
         /* 商品卡片 */
         .goods-card {
-            background: white;
-            border-radius: 24px;
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
         }
 
         .goods-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
 
         /* 商品图片区域 */
         .goods-img {
             height: 180px;
-            background: linear-gradient(135deg, #c62828, #8b0000);
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -178,14 +204,15 @@
 
         .goods-score-badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.7);
+            top: 12px;
+            right: 12px;
+            background: rgba(28,20,16,0.75);
             backdrop-filter: blur(5px);
-            padding: 5px 12px;
-            border-radius: 30px;
+            padding: 5px 14px;
+            border-radius: 9999px;
             font-size: 14px;
-            color: #ffd700;
+            color: var(--gold-light);
+            border: 1px solid rgba(197,150,58,0.3);
         }
 
         /* 商品信息 */
@@ -194,16 +221,16 @@
         }
 
         .goods-name {
-            font-size: 18px;
-            font-weight: 700;
-            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
             margin-bottom: 8px;
         }
 
         .goods-desc {
             font-size: 13px;
-            color: #888;
-            line-height: 1.5;
+            color: var(--ink-soft);
+            line-height: 1.6;
             margin-bottom: 12px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -213,28 +240,28 @@
 
         .goods-stock {
             font-size: 12px;
-            color: #999;
-            margin-bottom: 15px;
+            color: var(--ink-light);
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 5px;
         }
 
         .stock-low {
-            color: #ff9800;
+            color: #e6a817;
         }
 
         .stock-out {
-            color: #f44336;
+            color: var(--red);
         }
 
         .exchange-btn {
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #b71c1c, #c62828);
-            color: white;
+            padding: 10px;
+            background: var(--red);
+            color: var(--bg-warm);
             border: none;
-            border-radius: 40px;
+            border-radius: 9999px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
@@ -243,16 +270,18 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            font-family: inherit;
         }
 
         .exchange-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(183, 28, 28, 0.4);
+            background: var(--red-dark);
+            box-shadow: var(--shadow-md);
         }
 
         .exchange-btn:disabled {
-            background: #ccc;
+            background: var(--ink-light);
             cursor: not-allowed;
+            opacity: 0.6;
         }
 
         /* 加载动画 */
@@ -260,7 +289,7 @@
             display: inline-block;
             width: 16px;
             height: 16px;
-            border: 2px solid white;
+            border: 2px solid var(--bg-warm);
             border-radius: 50%;
             border-top-color: transparent;
             animation: spin 0.6s linear infinite;
@@ -273,30 +302,29 @@
         /* 空状态 */
         .empty-state {
             text-align: center;
-            padding: 80px;
-            background: white;
-            border-radius: 24px;
+            padding: 64px;
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
         }
 
         .empty-state .emoji {
             font-size: 64px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
         /* 页脚 */
         .footer {
             text-align: center;
-            padding: 30px;
-            color: #999;
+            padding: 24px;
+            color: var(--ink-light);
             font-size: 13px;
-            margin-top: 20px;
+            margin-top: 24px;
         }
 
         /* 响应式 */
         @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
+            body { padding: 15px; }
             .score-card {
                 flex-direction: column;
                 text-align: center;

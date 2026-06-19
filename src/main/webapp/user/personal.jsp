@@ -8,6 +8,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人中心 - 中华京剧文化交流学习平台</title>
     <style>
+        :root {
+            --red: #C41E3A;
+            --red-dark: #8B1A2B;
+            --gold: #C5963A;
+            --gold-light: #D4A94E;
+            --gold-pale: #E8D5A3;
+            --gold-deep: #8B6914;
+            --bg-warm: #FFFDF7;
+            --bg-cream: #FBF7EF;
+            --bg-parchment: #F5F0E5;
+            --ink: #1C1410;
+            --ink-soft: #3D322B;
+            --ink-light: #6B5D53;
+            --shadow-sm: 0 1px 3px rgba(28,20,16,0.08);
+            --shadow-md: 0 4px 12px rgba(28,20,16,0.1);
+            --shadow-lg: 0 8px 24px rgba(28,20,16,0.16);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,10 +33,11 @@
         }
 
         body {
-            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f5f0e8 0%, #f0ebe0 100%);
+            font-family: 'Noto Serif SC', 'STSong', 'Songti SC', serif;
+            background: var(--bg-warm);
             padding: 30px;
             min-height: 100vh;
+            color: var(--ink);
         }
 
         .container {
@@ -28,12 +47,13 @@
 
         .page-header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 32px;
         }
 
         .page-header h1 {
-            font-size: 36px;
-            color: #b71c1c;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--red);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -42,49 +62,48 @@
 
         .header-decoration {
             width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #b71c1c, #e8b88a, #b71c1c);
-            margin: 15px auto 0;
-            border-radius: 3px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin: 16px auto 0;
         }
 
         .tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #e5e5e5;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--gold-pale);
             flex-wrap: wrap;
         }
 
         .tab-btn {
-            padding: 12px 28px;
+            padding: 12px 24px;
             background: none;
             border: none;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
-            color: #888;
+            color: var(--ink-light);
             cursor: pointer;
             transition: all 0.3s;
             position: relative;
+            font-family: inherit;
         }
 
         .tab-btn.active {
-            color: #b71c1c;
+            color: var(--red);
         }
 
         .tab-btn.active::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: -1px;
             left: 0;
             width: 100%;
             height: 3px;
-            background: #b71c1c;
-            border-radius: 3px;
+            background: var(--gold);
         }
 
         .tab-btn:hover {
-            color: #b71c1c;
+            color: var(--red);
         }
 
         .tab-panel {
@@ -102,34 +121,48 @@
         }
 
         .card {
-            background: white;
-            border-radius: 24px;
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow-md);
         }
 
         .card-header {
-            background: linear-gradient(135deg, #b71c1c, #c62828);
-            padding: 20px 30px;
-            color: white;
+            background: var(--ink);
+            padding: 18px 24px;
+            color: var(--bg-warm);
+            position: relative;
+        }
+
+        .card-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
         }
 
         .card-header h3 {
-            font-size: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--gold-pale);
         }
 
         .card-body {
-            padding: 30px;
+            padding: 28px;
         }
 
         .profile-header {
             display: flex;
             align-items: center;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 32px;
+            margin-bottom: 28px;
             flex-wrap: wrap;
         }
 
@@ -140,14 +173,15 @@
         .avatar-img {
             width: 120px;
             height: 120px;
-            background: linear-gradient(135deg, #e8b88a, #c62828);
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            border: 3px solid var(--gold-pale);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 60px;
             margin-bottom: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-md);
         }
 
         .info-section {
@@ -156,43 +190,47 @@
 
         .info-row {
             display: flex;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
             padding-bottom: 12px;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--gold-pale);
         }
 
         .info-label {
             width: 100px;
             font-weight: 600;
-            color: #666;
+            color: var(--ink-light);
+            font-size: 14px;
         }
 
         .info-value {
             flex: 1;
-            color: #333;
+            color: var(--ink);
+            font-size: 14px;
         }
 
         .score-badge {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            background: linear-gradient(135deg, #ffd700, #ffb300);
-            padding: 8px 20px;
-            border-radius: 30px;
-            color: #5d4037;
-            font-weight: bold;
+            gap: 6px;
+            background: rgba(197,150,58,0.15);
+            border: 1px solid var(--gold-pale);
+            padding: 6px 18px;
+            border-radius: 9999px;
+            color: var(--gold-deep);
+            font-weight: 600;
+            font-size: 14px;
         }
 
         .btn-group {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 24px;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 10px 25px;
-            border-radius: 30px;
+            padding: 10px 24px;
+            border-radius: 9999px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
@@ -202,27 +240,28 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            font-family: inherit;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #b71c1c, #c62828);
-            color: white;
+            background: var(--red);
+            color: var(--bg-warm);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(183, 28, 28, 0.3);
+            background: var(--red-dark);
+            box-shadow: var(--shadow-md);
         }
 
         .btn-outline {
-            background: white;
-            border: 2px solid #b71c1c;
-            color: #b71c1c;
+            background: transparent;
+            border: 1.5px solid var(--gold);
+            color: var(--gold);
         }
 
         .btn-outline:hover {
-            background: #b71c1c;
-            color: white;
+            background: var(--gold-pale);
+            color: var(--gold-deep);
         }
 
         .form-group {
@@ -232,33 +271,41 @@
         .form-group label {
             display: block;
             font-size: 14px;
-            font-weight: 600;
-            color: #555;
+            font-weight: 500;
+            color: var(--ink-soft);
             margin-bottom: 8px;
         }
 
         .form-group input {
             width: 100%;
-            border: 1.5px solid #e5e7eb;
-            border-radius: 12px;
+            border: 1px solid var(--gold-pale);
+            border-radius: 6px;
             padding: 12px 16px;
             font-size: 14px;
             transition: all 0.3s;
+            background: var(--bg-warm);
+            color: var(--ink);
+            font-family: inherit;
+        }
+
+        .form-group input::placeholder {
+            color: var(--ink-light);
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #b71c1c;
-            box-shadow: 0 0 0 3px rgba(183, 28, 28, 0.1);
+            border-color: var(--red);
+            box-shadow: 0 0 0 2px rgba(197,150,58,0.25);
         }
 
         .alert {
             padding: 12px 18px;
-            border-radius: 12px;
+            border-radius: 8px;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 14px;
         }
 
         .alert-success {
@@ -269,7 +316,7 @@
 
         .alert-error {
             background: #ffebee;
-            color: #c62828;
+            color: var(--red);
             border: 1px solid #ffcdd2;
         }
 
@@ -282,46 +329,49 @@
         .growth-table td {
             padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--gold-pale);
+            font-size: 14px;
         }
 
         .growth-table th {
-            background: #faf5f0;
-            color: #b71c1c;
+            background: var(--bg-parchment);
+            color: var(--ink-soft);
             font-weight: 600;
         }
 
         .growth-table tr:hover {
-            background: #faf5f0;
+            background: var(--bg-parchment);
         }
 
         .score-plus {
-            color: #4caf50;
+            color: #2e7d32;
+            font-weight: 600;
         }
 
         .score-minus {
-            color: #f44336;
+            color: var(--red);
+            font-weight: 600;
         }
 
         .empty-state {
             text-align: center;
-            padding: 60px;
-            color: #999;
+            padding: 48px;
+            color: var(--ink-light);
         }
 
         .empty-state .emoji {
             font-size: 48px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
         .spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #b71c1c;
+            border: 3px solid var(--gold-pale);
+            border-top: 3px solid var(--red);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+            margin: 0 auto 16px;
         }
 
         @keyframes spin {
@@ -330,9 +380,7 @@
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
+            body { padding: 15px; }
             .profile-header {
                 flex-direction: column;
                 text-align: center;
@@ -342,7 +390,7 @@
             }
             .info-label {
                 width: 100%;
-                margin-bottom: 5px;
+                margin-bottom: 4px;
             }
             .tabs {
                 justify-content: center;

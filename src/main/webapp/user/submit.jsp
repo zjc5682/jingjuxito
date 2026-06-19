@@ -8,6 +8,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>作品投稿 - 中华京剧文化学习平台</title>
     <style>
+        :root {
+            --red: #C41E3A;
+            --red-dark: #8B1A2B;
+            --gold: #C5963A;
+            --gold-light: #D4A94E;
+            --gold-pale: #E8D5A3;
+            --gold-deep: #8B6914;
+            --bg-warm: #FFFDF7;
+            --bg-cream: #FBF7EF;
+            --bg-parchment: #F5F0E5;
+            --ink: #1C1410;
+            --ink-soft: #3D322B;
+            --ink-light: #6B5D53;
+            --shadow-sm: 0 1px 3px rgba(28,20,16,0.08);
+            --shadow-md: 0 4px 12px rgba(28,20,16,0.1);
+            --shadow-lg: 0 8px 24px rgba(28,20,16,0.16);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,10 +33,11 @@
         }
 
         body {
-            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f5f0e8 0%, #f0ebe0 100%);
+            font-family: 'Noto Serif SC', 'STSong', 'Songti SC', serif;
+            background: var(--bg-warm);
             padding: 30px;
             min-height: 100vh;
+            color: var(--ink);
         }
 
         .container {
@@ -29,12 +48,13 @@
         /* 页面头部 */
         .page-header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 32px;
         }
 
         .page-header h1 {
-            font-size: 36px;
-            color: #b71c1c;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--red);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -42,55 +62,54 @@
         }
 
         .page-header p {
-            color: #666;
-            margin-top: 10px;
+            color: var(--ink-light);
+            margin-top: 8px;
         }
 
         .header-decoration {
             width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #b71c1c, #e8b88a, #b71c1c);
-            margin: 15px auto 0;
-            border-radius: 3px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin: 16px auto 0;
         }
 
         /* 标签切换 */
         .tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #e5e5e5;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--gold-pale);
         }
 
         .tab-btn {
-            padding: 12px 28px;
+            padding: 12px 24px;
             background: none;
             border: none;
             font-size: 16px;
             font-weight: 600;
-            color: #888;
+            color: var(--ink-light);
             cursor: pointer;
             transition: all 0.3s;
             position: relative;
+            font-family: inherit;
         }
 
         .tab-btn.active {
-            color: #b71c1c;
+            color: var(--red);
         }
 
         .tab-btn.active::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: -1px;
             left: 0;
             width: 100%;
             height: 3px;
-            background: #b71c1c;
-            border-radius: 3px;
+            background: var(--gold);
         }
 
         .tab-btn:hover {
-            color: #b71c1c;
+            color: var(--red);
         }
 
         /* 面板 */
@@ -110,51 +129,60 @@
 
         /* 投稿表单 */
         .submit-card {
-            background: white;
-            border-radius: 24px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
         }
 
         .form-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 25px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
             gap: 10px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--gold-pale);
         }
 
         .form-group {
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
             font-size: 14px;
-            font-weight: 600;
-            color: #555;
+            font-weight: 500;
+            color: var(--ink-soft);
             margin-bottom: 8px;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            border: 1.5px solid #e5e7eb;
-            border-radius: 14px;
-            padding: 14px 16px;
+            border: 1px solid var(--gold-pale);
+            border-radius: 6px;
+            padding: 12px 16px;
             font-size: 14px;
             transition: all 0.3s;
-            background: #f9fafb;
+            background: var(--bg-warm);
+            color: var(--ink);
+            font-family: inherit;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--ink-light);
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #b71c1c;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(183, 28, 28, 0.1);
+            border-color: var(--red);
+            box-shadow: 0 0 0 2px rgba(197,150,58,0.25);
         }
 
         .form-group textarea {
@@ -163,20 +191,21 @@
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, #b71c1c, #c62828);
-            color: white;
+            background: var(--red);
+            color: var(--bg-warm);
             border: none;
-            padding: 14px 35px;
-            border-radius: 40px;
+            padding: 12px 36px;
+            border-radius: 9999px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            font-family: inherit;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(183, 28, 28, 0.3);
+            background: var(--red-dark);
+            box-shadow: var(--shadow-md);
         }
 
         /* 提示消息 */
@@ -184,36 +213,38 @@
             background: #e8f5e9;
             border: 1px solid #a5d6a7;
             color: #2e7d32;
-            padding: 14px 20px;
-            border-radius: 14px;
-            margin-bottom: 25px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 14px;
         }
 
         .alert-error {
             background: #ffebee;
             border-color: #ffcdd2;
-            color: #c62828;
+            color: var(--red);
         }
 
         /* 加载动画 */
         .loading-state {
             text-align: center;
             padding: 60px;
-            background: white;
-            border-radius: 24px;
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
         }
 
         .spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #b71c1c;
+            border: 3px solid var(--gold-pale);
+            border-top: 3px solid var(--red);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+            margin: 0 auto 16px;
         }
 
         @keyframes spin {
@@ -225,26 +256,27 @@
         .submits-list {
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 16px;
         }
 
         .submit-item {
-            background: white;
-            border-radius: 20px;
-            padding: 22px;
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 8px;
+            padding: 20px;
             transition: all 0.3s;
-            border-left: 5px solid;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid;
+            box-shadow: var(--shadow-sm);
         }
 
         .submit-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transform: translateX(4px);
+            box-shadow: var(--shadow-md);
         }
 
-        .submit-item.status-0 { border-left-color: #ff9800; }
-        .submit-item.status-1 { border-left-color: #4caf50; }
-        .submit-item.status-2 { border-left-color: #f44336; }
+        .submit-item.status-0 { border-left-color: #e6a817; }
+        .submit-item.status-1 { border-left-color: #2e7d32; }
+        .submit-item.status-2 { border-left-color: var(--red); }
 
         .submit-header {
             display: flex;
@@ -256,45 +288,50 @@
         }
 
         .submit-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
         }
 
         .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            padding: 4px 12px;
-            border-radius: 30px;
+            padding: 4px 14px;
+            border-radius: 9999px;
             font-size: 12px;
+            border: 1px solid;
         }
 
         .status-pending {
-            background: #fff3e0;
-            color: #ff9800;
+            background: #fff8e1;
+            color: #e6a817;
+            border-color: #e6a817;
         }
 
         .status-approved {
             background: #e8f5e9;
-            color: #4caf50;
+            color: #2e7d32;
+            border-color: #2e7d32;
         }
 
         .status-rejected {
             background: #ffebee;
-            color: #f44336;
+            color: var(--red);
+            border-color: var(--red);
         }
 
         .featured-badge {
-            background: linear-gradient(135deg, #ffd700, #ffb300);
-            color: #5d4037;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: var(--ink);
             margin-left: 8px;
+            border-color: var(--gold-deep);
         }
 
         .submit-content {
-            color: #666;
+            color: var(--ink-soft);
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 12px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -307,40 +344,41 @@
             justify-content: space-between;
             align-items: center;
             font-size: 12px;
-            color: #999;
+            color: var(--ink-light);
             flex-wrap: wrap;
             gap: 10px;
         }
 
         .admin-comment {
-            background: #f5f5f5;
-            padding: 8px 12px;
-            border-radius: 10px;
-            margin-top: 10px;
+            background: var(--bg-parchment);
+            border: 1px solid var(--gold-pale);
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-top: 12px;
             font-size: 13px;
+            color: var(--ink-soft);
         }
 
         .admin-comment strong {
-            color: #b71c1c;
+            color: var(--red);
         }
 
         .empty-state {
             text-align: center;
             padding: 60px;
-            background: white;
-            border-radius: 24px;
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
         }
 
         .empty-state .emoji {
             font-size: 64px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
         /* 响应式 */
         @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
+            body { padding: 15px; }
             .tabs {
                 justify-content: center;
             }

@@ -7,6 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>经典京剧剧目 - 中华京剧文化学习平台</title>
     <style>
+        :root {
+            --red: #C41E3A;
+            --red-dark: #8B1A2B;
+            --gold: #C5963A;
+            --gold-light: #D4A94E;
+            --gold-pale: #E8D5A3;
+            --gold-deep: #8B6914;
+            --bg-warm: #FFFDF7;
+            --bg-cream: #FBF7EF;
+            --bg-parchment: #F5F0E5;
+            --ink: #1C1410;
+            --ink-soft: #3D322B;
+            --ink-light: #6B5D53;
+            --shadow-sm: 0 1px 3px rgba(28,20,16,0.08);
+            --shadow-md: 0 4px 12px rgba(28,20,16,0.1);
+            --shadow-lg: 0 8px 24px rgba(28,20,16,0.16);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,10 +32,11 @@
         }
 
         body {
-            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f5f0e8 0%, #f0ebe0 100%);
+            font-family: 'Noto Serif SC', 'STSong', 'Songti SC', serif;
+            background: var(--bg-warm);
             padding: 30px;
             min-height: 100vh;
+            color: var(--ink);
         }
 
         .container {
@@ -27,12 +46,13 @@
 
         .page-header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 32px;
         }
 
         .page-header h1 {
-            font-size: 36px;
-            color: #b71c1c;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--red);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -40,29 +60,30 @@
         }
 
         .page-header p {
-            color: #666;
+            color: var(--ink-light);
             font-size: 16px;
+            margin-top: 8px;
         }
 
         .header-decoration {
             width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #b71c1c, #e8b88a, #b71c1c);
-            margin: 15px auto 0;
-            border-radius: 3px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin: 16px auto 0;
         }
 
         .stats-bar {
-            background: white;
-            border-radius: 20px;
-            padding: 18px 30px;
-            margin-bottom: 30px;
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
+            padding: 16px 24px;
+            margin-bottom: 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
         }
 
         .total-count {
@@ -70,13 +91,13 @@
             align-items: center;
             gap: 8px;
             font-size: 16px;
-            color: #555;
+            color: var(--ink-soft);
         }
 
         .total-count span {
             font-size: 24px;
-            font-weight: bold;
-            color: #b71c1c;
+            font-weight: 700;
+            color: var(--red);
         }
 
         .search-box {
@@ -86,51 +107,68 @@
 
         .search-box input {
             padding: 10px 16px;
-            border: 1px solid #ddd;
-            border-radius: 30px;
+            border: 1px solid var(--gold-pale);
+            border-radius: 6px;
             width: 250px;
             font-size: 14px;
+            background: var(--bg-warm);
+            color: var(--ink);
+            font-family: inherit;
+        }
+
+        .search-box input::placeholder {
+            color: var(--ink-light);
         }
 
         .search-box input:focus {
             outline: none;
-            border-color: #b71c1c;
+            border-color: var(--red);
+            box-shadow: 0 0 0 2px rgba(197,150,58,0.25);
         }
 
         .search-box button {
-            padding: 10px 20px;
-            background: #b71c1c;
-            color: white;
+            padding: 10px 24px;
+            background: var(--red);
+            color: var(--bg-warm);
             border: none;
-            border-radius: 30px;
+            border-radius: 9999px;
             cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .search-box button:hover {
+            background: var(--red-dark);
+            box-shadow: var(--shadow-md);
         }
 
         .opera-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
+            gap: 24px;
             margin-bottom: 40px;
         }
 
         .opera-card {
-            background: white;
-            border-radius: 24px;
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
         }
 
         .opera-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
 
         .card-image {
             height: 200px;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, #c62828, #8b0000);
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
         }
 
         .card-image img {
@@ -146,15 +184,16 @@
 
         .opera-type {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.6);
+            top: 12px;
+            right: 12px;
+            background: rgba(28,20,16,0.7);
             backdrop-filter: blur(5px);
-            padding: 4px 12px;
-            border-radius: 20px;
+            padding: 4px 14px;
+            border-radius: 9999px;
             font-size: 12px;
-            color: #ffd700;
+            color: var(--gold-light);
             z-index: 2;
+            border: 1px solid rgba(197,150,58,0.3);
         }
 
         .card-content {
@@ -162,9 +201,9 @@
         }
 
         .opera-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: #333;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--ink);
             margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
@@ -173,18 +212,19 @@
 
         .opera-title .id-badge {
             font-size: 12px;
-            background: #f0f0f0;
+            background: var(--bg-parchment);
+            border: 1px solid var(--gold-pale);
             padding: 3px 10px;
-            border-radius: 20px;
-            color: #888;
+            border-radius: 9999px;
+            color: var(--ink-light);
             font-weight: normal;
         }
 
         .opera-desc {
             font-size: 14px;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 15px;
+            color: var(--ink-soft);
+            line-height: 1.7;
+            margin-bottom: 16px;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
@@ -196,8 +236,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
+            padding-top: 12px;
+            border-top: 1px solid var(--gold-pale);
         }
 
         .praise-btn {
@@ -205,38 +245,45 @@
             align-items: center;
             gap: 8px;
             background: none;
-            border: none;
+            border: 1px solid var(--gold-pale);
             cursor: pointer;
-            padding: 8px 16px;
-            border-radius: 30px;
+            padding: 6px 16px;
+            border-radius: 9999px;
             transition: all 0.3s;
-            font-size: 15px;
-            color: #888;
+            font-size: 14px;
+            color: var(--ink-light);
         }
 
         .praise-btn:hover {
-            background: #fff0f0;
+            background: var(--bg-parchment);
+            border-color: var(--gold);
         }
 
         .praise-btn .heart {
-            font-size: 22px;
+            font-size: 18px;
         }
 
         .praise-count {
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .view-detail {
-            color: #b71c1c;
+            color: var(--gold);
             text-decoration: none;
             font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .view-detail:hover {
+            color: var(--red-dark);
+            text-decoration: underline;
         }
 
         .footer {
             text-align: center;
-            padding: 30px;
-            color: #999;
+            padding: 24px;
+            color: var(--ink-light);
             font-size: 13px;
         }
 
@@ -245,13 +292,14 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
+            background: var(--ink);
+            color: var(--bg-warm);
+            padding: 10px 24px;
+            border-radius: 9999px;
             font-size: 14px;
             z-index: 1000;
             animation: fadeOut 2s ease forwards;
+            border: 1px solid var(--gold-pale);
         }
 
         @keyframes fadeOut {

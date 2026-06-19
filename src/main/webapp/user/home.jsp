@@ -7,6 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>首页 - 中华京剧文化学习平台</title>
     <style>
+        :root {
+            --red: #C41E3A;
+            --red-dark: #8B1A2B;
+            --gold: #C5963A;
+            --gold-light: #D4A94E;
+            --gold-pale: #E8D5A3;
+            --gold-deep: #8B6914;
+            --bg-warm: #FFFDF7;
+            --bg-cream: #FBF7EF;
+            --bg-parchment: #F5F0E5;
+            --ink: #1C1410;
+            --ink-soft: #3D322B;
+            --ink-light: #6B5D53;
+            --shadow-sm: 0 1px 3px rgba(28,20,16,0.08);
+            --shadow-md: 0 4px 12px rgba(28,20,16,0.1);
+            --shadow-lg: 0 8px 24px rgba(28,20,16,0.16);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,9 +32,10 @@
         }
 
         body {
-            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f5f0e8 0%, #f0ebe0 100%);
+            font-family: 'Noto Serif SC', 'STSong', 'Songti SC', serif;
+            background: var(--bg-warm);
             padding: 25px;
+            color: var(--ink);
         }
 
         .container {
@@ -26,30 +45,32 @@
 
         /* 欢迎横幅 */
         .hero {
-            background: linear-gradient(135deg, #c62828, #b71c1c);
-            border-radius: 28px;
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            border-radius: 16px;
             padding: 50px 40px;
-            margin-bottom: 35px;
-            color: white;
+            margin-bottom: 32px;
+            color: var(--bg-warm);
             position: relative;
             overflow: hidden;
         }
 
         .hero::before {
-            content: "🎭";
+            content: "";
             position: absolute;
-            font-size: 220px;
-            opacity: 0.08;
-            right: -30px;
-            bottom: -50px;
+            width: 300px;
+            height: 300px;
+            right: -40px;
+            bottom: -60px;
+            background: radial-gradient(circle, rgba(197,150,58,0.15) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .hero h1 {
-            font-size: 36px;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            margin-bottom: 16px;
             font-weight: 700;
             letter-spacing: 2px;
+            color: var(--bg-warm);
         }
 
         .hero p {
@@ -57,38 +78,41 @@
             opacity: 0.92;
             line-height: 1.8;
             max-width: 70%;
+            color: var(--bg-warm);
         }
 
         .hero-badge {
             display: inline-block;
-            background: rgba(255, 215, 0, 0.25);
-            backdrop-filter: blur(5px);
+            background: rgba(197,150,58,0.25);
+            border: 1px solid rgba(197,150,58,0.4);
             padding: 6px 16px;
-            border-radius: 30px;
+            border-radius: 9999px;
             font-size: 13px;
             margin-bottom: 20px;
+            color: var(--gold-pale);
         }
 
         /* 统计卡片 */
         .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
+            gap: 24px;
+            margin-bottom: 48px;
         }
 
         .stat-card {
-            background: white;
-            border-radius: 20px;
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
             padding: 28px 20px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-md);
             transition: all 0.3s;
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
 
         .stat-emoji {
@@ -98,101 +122,126 @@
 
         .stat-number {
             font-size: 32px;
-            font-weight: 800;
-            color: #c62828;
+            font-weight: 700;
+            color: var(--red);
             margin-bottom: 5px;
         }
 
         .stat-label {
             font-size: 14px;
-            color: #666;
+            color: var(--ink-light);
             letter-spacing: 1px;
         }
 
         /* 特色功能区域 */
         .section-title {
             text-align: center;
-            font-size: 28px;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #333;
-            margin-bottom: 15px;
+            color: var(--ink);
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, var(--gold), transparent);
+            margin: 12px auto 0;
         }
 
         .section-subtitle {
             text-align: center;
-            color: #888;
-            margin-bottom: 35px;
+            color: var(--ink-light);
+            margin-bottom: 32px;
             font-size: 15px;
         }
 
         .features {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-bottom: 45px;
+            gap: 24px;
+            margin-bottom: 48px;
         }
 
         .feature {
-            background: white;
-            border-radius: 24px;
+            background: var(--bg-cream);
+            border-radius: 12px;
             padding: 32px 24px;
             text-align: center;
             transition: all 0.3s;
             cursor: pointer;
-            border: 1px solid #f0f0f0;
+            border: 1px solid var(--gold-pale);
         }
 
         .feature:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: #c62828;
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
         }
 
         .feature-icon {
             font-size: 56px;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
         .feature h3 {
-            font-size: 20px;
-            color: #333;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--ink);
             margin-bottom: 10px;
         }
 
         .feature p {
             font-size: 14px;
-            color: #777;
-            line-height: 1.6;
+            color: var(--ink-soft);
+            line-height: 1.7;
         }
 
         /* 推荐剧目 */
         .recommend-section {
-            background: white;
-            border-radius: 24px;
-            padding: 35px;
+            background: var(--bg-cream);
+            border: 1px solid var(--gold-pale);
+            border-radius: 12px;
+            padding: 32px;
             margin-bottom: 40px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-md);
         }
 
         .recommend-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid linear-gradient(to right, var(--gold), transparent);
         }
 
         .recommend-header h3 {
-            font-size: 22px;
-            color: #333;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--ink);
             display: flex;
             align-items: center;
             gap: 8px;
+            padding-left: 12px;
+            border-left: 4px solid var(--gold);
         }
 
         .more-link {
-            color: #c62828;
+            color: var(--gold);
             text-decoration: none;
             font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .more-link:hover {
+            color: var(--red-dark);
+            text-decoration: underline;
         }
 
         .opera-list {
@@ -202,16 +251,17 @@
         }
 
         .opera-item {
-            background: #f9f7f3;
-            border-radius: 16px;
+            background: var(--bg-parchment);
+            border-radius: 8px;
             overflow: hidden;
             transition: all 0.3s;
             cursor: pointer;
+            border: 1px solid var(--gold-pale);
         }
 
         .opera-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-md);
         }
 
         .opera-img {
@@ -236,35 +286,48 @@
 
         .opera-info h4 {
             font-size: 18px;
-            color: #333;
+            font-weight: 600;
+            color: var(--ink);
             margin-bottom: 6px;
         }
 
         .opera-info p {
             font-size: 13px;
-            color: #888;
-            line-height: 1.5;
+            color: var(--ink-light);
+            line-height: 1.6;
         }
 
         /* 文化名言 */
         .quote-block {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            border-radius: 20px;
+            background: linear-gradient(135deg, var(--ink), #2C2218);
+            border-radius: 12px;
             padding: 40px;
             text-align: center;
-            color: white;
+            color: var(--bg-warm);
+            position: relative;
+        }
+
+        .quote-block::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
         }
 
         .quote-text {
             font-size: 18px;
             font-style: italic;
             line-height: 1.8;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            color: var(--gold-pale);
         }
 
         .quote-author {
             font-size: 14px;
-            opacity: 0.7;
+            color: var(--ink-light);
         }
 
         /* 响应式 */
@@ -282,7 +345,7 @@
                 grid-template-columns: 1fr;
             }
             .hero h1 {
-                font-size: 26px;
+                font-size: 1.5rem;
             }
         }
     </style>
