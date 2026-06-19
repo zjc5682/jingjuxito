@@ -1,0 +1,604 @@
+/* ============================================
+   京剧文化平台 - 登录页样式
+   设计主题：中国古韵
+   ============================================ */
+
+:root {
+    --bg-paper: #FFF8EE;
+    --red-face: #C53A2F;
+    --red-dark: #8B1A1A;
+    --gold-line: #B8860B;
+    --border-sand: #D9CFBF;
+    --text-dark: #3E3E3E;
+    --text-light: #888888;
+    --card-shadow: 0 8px 30px rgba(62, 62, 62, 0.12);
+}
+
+/* 全局重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-paper);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   主容器布局 - 全屏背景
+   ============================================ */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    /* 微黄底色（图片加载前的后备色） */
+    background-color: #f5e6c8;
+    overflow: hidden;
+}
+
+/* 中国风建筑背景图 */
+.login-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../img/login-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+/* 黄色蒙版叠加层 */
+.login-page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(245, 230, 200, 0.75) 0%,
+        rgba(232, 213, 168, 0.65) 30%,
+        rgba(240, 224, 184, 0.7) 60%,
+        rgba(229, 208, 160, 0.75) 100%
+    );
+    pointer-events: none;
+}
+
+.login-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 650px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(62, 62, 62, 0.15);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+}
+
+/* ============================================
+   左上角 Logo
+   ============================================ */
+.top-logo {
+    position: fixed;
+    top: 20px;
+    left: 25px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.top-logo .logo-title {
+    font-family: 'Noto Serif SC', '思源宋体', 'SimSun', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--red-face);
+    letter-spacing: 3px;
+}
+
+.top-logo .logo-seal {
+    width: 42px;
+    height: 42px;
+    background-color: var(--red-face);
+    border: 2px solid var(--red-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-5deg);
+    box-shadow: 2px 2px 6px rgba(139, 26, 26, 0.25);
+}
+
+.top-logo .logo-seal-text {
+    font-family: 'Noto Serif SC', '思源宋体', 'SimSun', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    writing-mode: vertical-rl;
+}
+
+/* ============================================
+   左侧文化展示区
+   ============================================ */
+.culture-panel {
+    flex: 0 0 45%;
+    flex: 1;
+    background-color: #f5e6c8;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    overflow: hidden;
+}
+
+/* 文化图片背景 - 请将你的图片保存为 culture-bg.jpg */
+.culture-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../img/culture-bg.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.95;
+    pointer-events: none;
+}
+
+/* 金色分隔线 */
+.culture-panel::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 10%;
+    height: 80%;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--gold-line),
+        var(--gold-line),
+        transparent
+    );
+    opacity: 0.6;
+}
+
+/* 标题区域 */
+.culture-title {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.culture-title h1 {
+    font-family: 'Noto Serif SC', '思源宋体', 'SimSun', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--red-face);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 12px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(197, 58, 47, 0.15);
+}
+
+/* 印章 */
+.seal {
+    position: relative;
+    z-index: 1;
+    width: 90px;
+    height: 90px;
+    background-color: var(--red-face);
+    border: 3px solid var(--red-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-5deg);
+    box-shadow: 2px 2px 8px rgba(139, 26, 26, 0.3);
+    margin-top: 20px;
+}
+
+.seal-text {
+    font-family: 'Noto Serif SC', '思源宋体', 'SimSun', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 4px;
+    writing-mode: vertical-rl;
+}
+
+/* ============================================
+   右侧登录卡片区
+   ============================================ */
+.login-panel {
+    flex: 0 0 45%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    background: #FFFFFF;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 360px;
+}
+
+/* 卡片标题 */
+.login-card-header {
+    margin-bottom: 35px;
+}
+
+.login-card-header h2 {
+    font-family: 'Noto Serif SC', '思源宋体', 'SimSun', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--red-face);
+    display: inline-block;
+    position: relative;
+}
+
+.login-card-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--gold-line);
+    border-radius: 2px;
+}
+
+.login-card-header p {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+/* ============================================
+   表单样式
+   ============================================ */
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: var(--border-sand);
+    transition: color 0.3s ease;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 16px 14px 44px;
+    background-color: var(--bg-paper);
+    border: 1px solid var(--border-sand);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-wrapper input::placeholder {
+    color: #C4B8A8;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--red-face);
+    box-shadow: 0 0 0 3px rgba(197, 58, 47, 0.2);
+    background-color: #FFFFFF;
+}
+
+.input-wrapper input:focus + .input-icon,
+.input-wrapper input:focus ~ .input-icon {
+    color: var(--red-face);
+}
+
+/* ============================================
+   选项行
+   ============================================ */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    font-size: 13px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--red-face);
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: var(--red-face);
+    text-decoration: underline;
+}
+
+/* ============================================
+   登录按钮
+   ============================================ */
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--red-face), var(--red-dark));
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(197, 58, 47, 0.3);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(197, 58, 47, 0.4);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+    background: linear-gradient(135deg, var(--red-dark), #6B0F0F);
+}
+
+/* ============================================
+   注册链接
+   ============================================ */
+.register-link {
+    text-align: center;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #F0EBE3;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.register-link a {
+    color: var(--gold-line);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+    color: #D4A017;
+}
+
+/* ============================================
+   测试账号提示
+   ============================================ */
+.test-accounts {
+    margin-top: 24px;
+    padding: 16px;
+    background: #FDF8F0;
+    border: 1px solid #EDE4D4;
+    border-radius: 10px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.test-accounts p {
+    color: #8B7355;
+    margin-bottom: 8px;
+}
+
+.test-accounts .account {
+    font-family: 'Courier New', monospace;
+    background: #FFFFFF;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin: 3px 4px;
+    font-size: 11px;
+    color: var(--text-dark);
+    border: 1px solid #EDE4D4;
+}
+
+/* ============================================
+   错误提示
+   ============================================ */
+.error-alert {
+    background: #FEE2E2;
+    border: 1px solid #FECACA;
+    color: #DC2626;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.error-alert::before {
+    content: "⚠️";
+}
+
+/* ============================================
+   动画效果
+   ============================================ */
+.animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.animate-fadeInRight {
+    animation: fadeInRight 0.6s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.2s;
+}
+
+.animate-seal {
+    animation: sealAppear 1s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes sealAppear {
+    from {
+        opacity: 0;
+        transform: rotate(-20deg) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(-5deg) scale(1);
+    }
+}
+
+/* ============================================
+   响应式设计
+   ============================================ */
+@media (max-width: 992px) {
+    .login-page {
+        padding: 20px;
+    }
+
+    .login-container {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .culture-panel {
+        flex: 0 0 auto;
+        padding: 40px 30px;
+        min-height: 200px;
+    }
+
+    .culture-panel::after {
+        right: 10%;
+        top: auto;
+        bottom: 0;
+        height: 1px;
+        width: 80%;
+        background: linear-gradient(
+            to right,
+            transparent,
+            var(--gold-line),
+            var(--gold-line),
+            transparent
+        );
+    }
+
+    .culture-title h1 {
+        font-size: 36px;
+        writing-mode: horizontal-tb;
+        letter-spacing: 8px;
+        margin-bottom: 20px;
+    }
+
+    .seal {
+        width: 70px;
+        height: 70px;
+    }
+
+    .seal-text {
+        font-size: 22px;
+    }
+
+    .login-panel {
+        flex: 0 0 auto;
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .login-page {
+        padding: 10px;
+    }
+
+    .culture-panel {
+        padding: 30px 20px;
+    }
+
+    .culture-title h1 {
+        font-size: 28px;
+        letter-spacing: 6px;
+    }
+
+    .login-panel {
+        padding: 30px 20px;
+    }
+
+    .login-card-header h2 {
+        font-size: 24px;
+    }
+}
