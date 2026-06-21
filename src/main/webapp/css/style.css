@@ -136,8 +136,7 @@ body {
    左侧文化展示区
    ============================================ */
 .culture-panel {
-    flex: 0 0 45%;
-    flex: 1;
+    flex: 0 0 540px;
     background-color: #f5e6c8;
     position: relative;
     display: flex;
@@ -157,7 +156,7 @@ body {
     right: 0;
     bottom: 0;
     background-image: url("../img/culture-bg.jpg");
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.95;
@@ -231,7 +230,7 @@ body {
    右侧登录卡片区
    ============================================ */
 .login-panel {
-    flex: 0 0 45%;
+    flex: 0 0 40%;
     flex: 1;
     display: flex;
     align-items: center;

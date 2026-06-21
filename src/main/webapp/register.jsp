@@ -127,8 +127,7 @@
 
         /* 左侧图片区 */
         .register-left {
-            flex: 0 0 45%;
-            flex: 1;
+            flex: 0 0 540px;
             background-color: #f5e6c8;
             position: relative;
             overflow: hidden;
@@ -139,7 +138,7 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background-image: url("img/culture-bg.jpg");
-            background-size: contain;
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             opacity: 0.95;
@@ -159,7 +158,7 @@
 
         /* 右侧表单区 */
         .register-right {
-            flex: 0 0 45%;
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -174,20 +173,20 @@
 
         .logo-area {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .logo-area h2 {
-            font-size: 28px;
+            font-size: 24px;
             color: var(--red-face);
-            margin-top: 12px;
+            margin-top: 8px;
             font-weight: 600;
         }
 
         .logo-area p {
             color: var(--text-light);
-            font-size: 14px;
-            margin-top: 5px;
+            font-size: 13px;
+            margin-top: 4px;
         }
 
         .register-title {
@@ -230,7 +229,7 @@
         }
 
         .form-group {
-            margin-bottom: 22px;
+            margin-bottom: 16px;
         }
 
         .form-group label {
@@ -238,7 +237,7 @@
             font-size: 13px;
             font-weight: 500;
             color: var(--text-dark);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .input-wrapper {
@@ -312,8 +311,8 @@
 
         .login-link {
             text-align: center;
-            margin-top: 28px;
-            padding-top: 20px;
+            margin-top: 18px;
+            padding-top: 14px;
             border-top: 1px solid #F0EBE3;
             font-size: 14px;
             color: var(--text-light);
@@ -332,8 +331,8 @@
         }
 
         .tips {
-            margin-top: 24px;
-            padding: 16px;
+            margin-top: 16px;
+            padding: 12px;
             background: #FDF8F0;
             border: 1px solid #EDE4D4;
             border-radius: 10px;
@@ -406,40 +405,11 @@
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label>姓名</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">📝</span>
-                        <input type="text" name="name" placeholder="请输入真实姓名">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>手机号</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">📱</span>
-                        <input type="tel" name="phone" placeholder="请输入手机号">
-                    </div>
-                </div>
-            </div>
-
             <div class="form-group">
-                <label>邮箱</label>
+                <label>手机号</label>
                 <div class="input-wrapper">
-                    <span class="input-icon">📧</span>
-                    <input type="email" name="email" placeholder="请输入邮箱地址">
-                </div>
-            </div>
-
-            <!-- 角色选择 -->
-            <div class="form-group">
-                <label>角色</label>
-                <div class="input-wrapper">
-                    <span class="input-icon">👥</span>
-                    <select name="role">
-                        <option value="0">普通用户</option>
-                        <option value="1">管理员</option>
-                    </select>
+                    <span class="input-icon">📱</span>
+                    <input type="tel" name="phone" placeholder="请输入手机号">
                 </div>
             </div>
 

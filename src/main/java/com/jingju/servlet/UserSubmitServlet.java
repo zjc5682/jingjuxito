@@ -21,6 +21,11 @@ public class UserSubmitServlet extends BaseServlet {
     // 查看我的投稿（支持AJAX）
     public void mySubmits(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         User user = (User) req.getSession().getAttribute("loginUser");
+        if (user == null) {
+            resp.setContentType("text/html;charset=utf-8");
+            resp.getWriter().write("<div class='empty-state'><div class='emoji'>🔒</div><p>请先登录</p></div>");
+            return;
+        }
         List<UserSubmit> list = submitDao.findByUid(user.getId());
         req.setAttribute("mySubmits", list);
 

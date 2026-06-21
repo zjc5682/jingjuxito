@@ -88,6 +88,41 @@ public class OperaDao {
         return r;
     }
 
+    // 查询最热剧目（praise 最大值）
+    public Opera getHotestOpera() throws SQLException {
+        Connection conn = DBUtil.getConn();
+        String sql = "select * from opera order by praise desc limit 1";
+        Opera opera = null;
+        try {
+            opera = qr.query(conn, sql, new BeanHandler<>(Opera.class));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(conn);
+        }
+        return opera;
+    }
+
+    // 查询最热剧目 Top N
+    public List<Opera> getHotestOperas(int limit) throws SQLException {
+        Connection conn = DBUtil.getConn();
+        String sql = "select * from opera order by praise desc limit " + limit;
+        List<Opera> list = null;
+        try {
+            list = qr.query(conn, sql, new BeanListHandler<>(Opera.class));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(conn);
+        }
+        return list;
+    }
+
+    // 查询前4热门剧目（用于轮播图）
+    public List<Opera> getHotestOperas() throws SQLException {
+        return getHotestOperas(4);
+    }
+
     // 点赞增加
     public int addPraise(Integer id) throws SQLException {
         Connection conn = DBUtil.getConn();

@@ -101,6 +101,7 @@
     <a class="menu-item" href="AdminForumServlet?method=list" target="main">💬 论坛管理</a>
     <a class="menu-item" href="AdminShopServlet?method=list" target="main">🎁 商品管理</a>
     <a class="menu-item" href="AdminSubmitServlet?method=list" target="main">📋 投稿审核</a>
+    <a class="menu-item" href="AdminApplyServlet?method=list" target="main">📝 管理员申请</a>
     <a class="menu-item logout-item" href="${pageContext.request.contextPath}/LoginServlet?method=logout">🚪 退出系统</a>
 </div>
 <div class="right">
