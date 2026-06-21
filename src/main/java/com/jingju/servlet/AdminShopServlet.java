@@ -31,6 +31,8 @@ public class AdminShopServlet extends BaseServlet {
             g.setImg("img/default.jpg");
         }
         goodsDao.add(g);
+        req.getSession().setAttribute("toastMsg", "添加成功");
+        req.getSession().setAttribute("toastType", "success");
         resp.sendRedirect("AdminShopServlet?method=list");
     }
 
@@ -44,6 +46,8 @@ public class AdminShopServlet extends BaseServlet {
         g.setDescription(req.getParameter("description"));
         g.setImg(req.getParameter("img"));
         goodsDao.update(g);
+        req.getSession().setAttribute("toastMsg", "修改成功");
+        req.getSession().setAttribute("toastType", "success");
         resp.sendRedirect("AdminShopServlet?method=list");
     }
 
@@ -51,6 +55,8 @@ public class AdminShopServlet extends BaseServlet {
     public void up(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         Integer id = Integer.parseInt(req.getParameter("id"));
         goodsDao.updateStatus(id, 1);
+        req.getSession().setAttribute("toastMsg", "商品已上架");
+        req.getSession().setAttribute("toastType", "success");
         resp.sendRedirect("AdminShopServlet?method=list");
     }
 
@@ -58,6 +64,8 @@ public class AdminShopServlet extends BaseServlet {
     public void down(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         Integer id = Integer.parseInt(req.getParameter("id"));
         goodsDao.updateStatus(id, 0);
+        req.getSession().setAttribute("toastMsg", "商品已下架");
+        req.getSession().setAttribute("toastType", "warning");
         resp.sendRedirect("AdminShopServlet?method=list");
     }
 
@@ -65,6 +73,8 @@ public class AdminShopServlet extends BaseServlet {
     public void del(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         Integer id = Integer.parseInt(req.getParameter("id"));
         goodsDao.del(id);
+        req.getSession().setAttribute("toastMsg", "删除成功");
+        req.getSession().setAttribute("toastType", "success");
         resp.sendRedirect("AdminShopServlet?method=list");
     }
 }

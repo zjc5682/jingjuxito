@@ -2,16 +2,31 @@ package com.jingju.dao;
 
 import com.jingju.entity.ShopGoods;
 import com.jingju.util.DBUtil;
+import org.apache.commons.dbutils.BasicRowProcessor;
+import org.apache.commons.dbutils.BeanProcessor;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GoodsDao {
     private QueryRunner qr = new QueryRunner();
+
+    // 列名映射：数据库 snake_case → Java camelCase
+    private static final Map<String, String> COLUMN_MAP = new HashMap<>();
+    static {
+        COLUMN_MAP.put("goods_name", "goodsName");
+        COLUMN_MAP.put("goods_score", "goodsScore");
+    }
+
+    // 带映射的 RowProcessor
+    private static final BasicRowProcessor ROW_PROCESSOR =
+        new BasicRowProcessor(new BeanProcessor(COLUMN_MAP));
 
     // 查询所有上架商品（用户端可见）
     public List<ShopGoods> findAvailable() throws SQLException {
@@ -19,7 +34,7 @@ public class GoodsDao {
         String sql = "select * from shop_goods where status = 1 order by goods_score asc";
         List<ShopGoods> list = null;
         try {
-            list = qr.query(conn, sql, new BeanListHandler<>(ShopGoods.class));
+            list = qr.query(conn, sql, new BeanListHandler<>(ShopGoods.class, ROW_PROCESSOR));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -34,7 +49,7 @@ public class GoodsDao {
         String sql = "select * from shop_goods order by id desc";
         List<ShopGoods> list = null;
         try {
-            list = qr.query(conn, sql, new BeanListHandler<>(ShopGoods.class));
+            list = qr.query(conn, sql, new BeanListHandler<>(ShopGoods.class, ROW_PROCESSOR));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -49,7 +64,7 @@ public class GoodsDao {
         String sql = "select * from shop_goods where id = ?";
         ShopGoods goods = null;
         try {
-            goods = qr.query(conn, sql, new BeanHandler<>(ShopGoods.class), id);
+            goods = qr.query(conn, sql, new BeanHandler<>(ShopGoods.class, ROW_PROCESSOR), id);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

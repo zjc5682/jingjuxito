@@ -4,108 +4,166 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>管理员后台</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Roboto, sans-serif;
-        }
-
-        .left {
-            width: 260px;
-            height: 100vh;
-            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            float: left;
-            position: fixed;
-            left: 0;
-            top: 0;
-            overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .left::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        .left::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .left::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-        }
-
-        .right {
-            width: calc(100% - 260px);
-            height: 100vh;
-            float: right;
-            background: #f5f5f5;
-        }
-
-        .top {
-            padding: 20px;
-            color: #fff;
-            font-size: 20px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.2);
-            font-weight: 600;
-            letter-spacing: 2px;
-        }
-
-        .menu-item {
-            display: block;
-            color: rgba(255, 255, 255, 0.85);
-            padding: 14px 20px;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s;
-            font-size: 15px;
-        }
-
-        .menu-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            padding-left: 28px;
-        }
-
-        .logout-item {
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .logout-item:hover {
-            background: rgba(255, 80, 80, 0.2);
-            color: #ff6b6b;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梨园芳华 - 管理员后台</title>
+    <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
-<div class="left">
-    <div class="top">🪭  管理员后台</div>
-    <a class="menu-item" href="AdminUserServlet?method=list" target="main">👥 用户管理</a>
-    <a class="menu-item" href="AdminOperaServlet?method=list" target="main">📖 剧目管理</a>
-    <a class="menu-item" href="AdminForumServlet?method=list" target="main">💬 论坛管理</a>
-    <a class="menu-item" href="AdminShopServlet?method=list" target="main">🎁 商品管理</a>
-    <a class="menu-item" href="AdminSubmitServlet?method=list" target="main">📋 投稿审核</a>
-    <a class="menu-item" href="AdminApplyServlet?method=list" target="main">📝 管理员申请</a>
-    <a class="menu-item logout-item" href="${pageContext.request.contextPath}/LoginServlet?method=logout">🚪 退出系统</a>
+
+<!-- Toast 容器 -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- 移动端遮罩 -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- 侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-brand">梨园芳华</div>
+        <div class="sidebar-tagline">管理后台</div>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="AdminUserServlet?method=list" target="main" data-page="user" class="active">
+            <span class="material-symbols-outlined">group</span>
+            <span>用户管理</span>
+        </a>
+        <a href="AdminOperaServlet?method=list" target="main" data-page="opera">
+            <span class="material-symbols-outlined">theater_comedy</span>
+            <span>剧目管理</span>
+        </a>
+        <a href="AdminForumServlet?method=list" target="main" data-page="forum">
+            <span class="material-symbols-outlined">forum</span>
+            <span>论坛管理</span>
+        </a>
+        <a href="AdminShopServlet?method=list" target="main" data-page="shop">
+            <span class="material-symbols-outlined">storefront</span>
+            <span>商品管理</span>
+        </a>
+        <a href="AdminSubmitServlet?method=list" target="main" data-page="submit">
+            <span class="material-symbols-outlined">rate_review</span>
+            <span>投稿审核</span>
+        </a>
+        <a href="AdminApplyServlet?method=list" target="main" data-page="apply">
+            <span class="material-symbols-outlined">assignment_ind</span>
+            <span>管理员申请</span>
+        </a>
+        <div class="sidebar-divider"></div>
+        <a href="${pageContext.request.contextPath}/LoginServlet?method=logout" class="logout-link">
+            <span class="material-symbols-outlined">logout</span>
+            <span>退出系统</span>
+        </a>
+    </nav>
+    <div class="sidebar-user">
+        <div class="avatar-sm">管</div>
+        <div class="sidebar-user-info">
+            <div class="sidebar-user-name">管理员</div>
+            <div class="sidebar-user-role">超级管理员</div>
+        </div>
+    </div>
+    <button class="sidebar-toggle" id="sidebarToggle" data-tooltip="折叠侧边栏">
+        <span class="material-symbols-outlined">chevron_left</span>
+    </button>
 </div>
-<div class="right">
-    <iframe name="main" src="AdminUserServlet?method=list" frameborder="0"></iframe>
+
+<!-- 主内容区 -->
+<div class="main-wrap" id="mainWrap">
+    <iframe name="main" src="AdminUserServlet?method=list" id="mainFrame"></iframe>
 </div>
+
+<script>
+    // ===== 侧边栏高亮 =====
+    var navLinks = document.querySelectorAll('.sidebar-nav a[data-page]');
+    navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            navLinks.forEach(function(l) { l.classList.remove('active'); });
+            this.classList.add('active');
+        });
+    });
+
+    // ===== 侧边栏折叠 =====
+    var sidebar = document.getElementById('sidebar');
+    var toggle = document.getElementById('sidebarToggle');
+    toggle.addEventListener('click', function() {
+        sidebar.classList.toggle('collapsed');
+    });
+
+    // ===== 移动端汉堡菜单 =====
+    var overlay = document.getElementById('sidebarOverlay');
+    overlay.addEventListener('click', function() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+    });
+
+    // iframe 内页面可以通过 postMessage 请求打开移动端菜单
+    window.addEventListener('message', function(e) {
+        if (e.data === 'toggle-sidebar') {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        }
+    });
+
+    // ===== Toast 通知系统（暴露给 iframe） =====
+    window.showToast = function(type, title, message, duration) {
+        var container = document.getElementById('toastContainer');
+        var icons = {
+            success: 'check_circle',
+            error: 'error',
+            warning: 'warning',
+            info: 'info'
+        };
+        var toast = document.createElement('div');
+        toast.className = 'toast toast-' + type;
+        toast.innerHTML =
+            '<div class="toast-icon"><span class="material-symbols-outlined">' + (icons[type] || 'info') + '</span></div>' +
+            '<div class="toast-body"><div class="toast-title">' + title + '</div>' +
+            (message ? '<div class="toast-message">' + message + '</div>' : '') +
+            '</div>' +
+            '<button class="toast-close" onclick="this.parentElement.classList.add(\'toast-out\');setTimeout(function(){this.parentElement.remove()}.bind(this),250)">' +
+            '<span class="material-symbols-outlined">close</span></button>';
+        container.appendChild(toast);
+        setTimeout(function() {
+            if (toast.parentElement) {
+                toast.classList.add('toast-out');
+                setTimeout(function() { toast.remove(); }, 250);
+            }
+        }, duration || 4000);
+    };
+
+    // ===== 确认对话框（替代浏览器 confirm） =====
+    window.showConfirm = function(options) {
+        return new Promise(function(resolve) {
+            var overlay = document.createElement('div');
+            overlay.className = 'confirm-overlay show';
+            var typeClass = options.type || 'confirm-danger';
+            overlay.innerHTML =
+                '<div class="confirm-box ' + typeClass + '">' +
+                '<div class="confirm-header">' +
+                '<div class="confirm-icon"><span class="material-symbols-outlined">' + (options.icon || 'warning') + '</span></div>' +
+                '<div class="confirm-content"><h4>' + options.title + '</h4>' +
+                (options.message ? '<p>' + options.message + '</p>' : '') +
+                '</div></div>' +
+                '<div class="confirm-actions">' +
+                '<button class="btn btn-neutral" id="confirmCancel">取消</button>' +
+                '<button class="btn ' + (options.type === 'confirm-warning' ? 'btn-warning' : options.type === 'confirm-info' ? 'btn-primary' : 'btn-danger') + '" id="confirmOk">' + (options.okText || '确定') + '</button>' +
+                '</div></div>';
+            document.body.appendChild(overlay);
+
+            overlay.querySelector('#confirmCancel').addEventListener('click', function() {
+                overlay.remove();
+                resolve(false);
+            });
+            overlay.querySelector('#confirmOk').addEventListener('click', function() {
+                overlay.remove();
+                resolve(true);
+            });
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    overlay.remove();
+                    resolve(false);
+                }
+            });
+        });
+    };
+</script>
 </body>
 </html>
