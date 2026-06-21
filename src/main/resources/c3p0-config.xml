@@ -4,7 +4,7 @@
         <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
         <property name="jdbcUrl">jdbc:mysql://localhost:3306/jingju-db?useSSL=false&amp;serverTimezone=Asia/Shanghai&amp;characterEncoding=utf8</property>
         <property name="user">root</property>
-        <property name="password">123456</property>
+        <property name="password">root</property>
 
         <property name="initialPoolSize">5</property>
         <property name="minPoolSize">5</property>
